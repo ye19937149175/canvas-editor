@@ -8,7 +8,7 @@ const pkgPath = path.resolve('package.json')
 fs.accessSync(path.resolve('dist'), fs.constants.F_OK)
 fs.accessSync(path.resolve('dist/canvas-editor.es.js'), fs.constants.F_OK)
 fs.accessSync(path.resolve('dist/canvas-editor.umd.js'), fs.constants.F_OK)
-
+// sasa
 // 缓存项目package.json
 const sourcePkg = fs.readFileSync(pkgPath, 'utf-8')
 
