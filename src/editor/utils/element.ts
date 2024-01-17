@@ -110,7 +110,8 @@ export function formatElementList(
       // 格式化元素
       const valueList = el.valueList || []
       formatElementList(valueList, {
-        ...options
+        ...options,
+        isHandleFirstElement: true
       })
       // 追加节点
       if (valueList.length) {
@@ -288,21 +289,22 @@ export function formatElementList(
               }
             }
           }
+          formatElementList(valueList, {
+            ...options,
+            isHandleFirstElement: false
+          })
           for (let v = 0; v < valueList.length; v++) {
             const element = valueList[v]
-            const valueStrList = splitText(element.value)
-            for (let e = 0; e < valueStrList.length; e++) {
-              const value = valueStrList[e]
-              elementList.splice(i, 0, {
-                ...element,
-                controlId,
-                value: value === '\n' ? ZERO : value,
-                type: element.type || ElementType.TEXT,
-                control: el.control,
-                controlComponent: ControlComponent.VALUE
-              })
-              i++
-            }
+            const value = element.value
+            elementList.splice(i, 0, {
+              ...element,
+              controlId,
+              value: value === '\n' ? ZERO : value,
+              type: element.type || ElementType.TEXT,
+              control: el.control,
+              controlComponent: ControlComponent.VALUE
+            })
+            i++
           }
         }
       } else if (placeholder) {
